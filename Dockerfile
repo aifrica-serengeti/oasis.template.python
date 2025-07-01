@@ -21,7 +21,7 @@ WORKDIR $APP_HOME
 COPY . ./
 
 # Install Python dependencies using a PyPI mirror or with extended timeout
-RUN pip install --default-timeout=100 Flask gunicorn
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Run the web service on container startup using gunicorn
 CMD exec gunicorn --bind :$PORT --workers 1 --threads 8 --timeout 0 app:app
